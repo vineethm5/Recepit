@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import *
 from django.contrib.auth import authenticate
 from django.contrib import messages
+from .models import *
 
 # Create your views here.
 def home(req):
@@ -44,4 +45,16 @@ def login(req):
     return render(req,"login.html")
 
 def billpage(req):
+    if req.method == "POST":
+        iteam=req.POST.get("iteam")
+        price=req.POST.get("price")
+        quantity=req.POST.get("quantity")
+
+        receipt.objects.create(
+            itemname=iteam,
+            price=price,
+            quantity=quantity
+        )
+        messages.info(req,"Item Added Succuessfully")
+
     return render(req,"billpage.html")

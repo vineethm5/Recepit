@@ -15,18 +15,32 @@
 	color: white;
 	text-decoration: none;
 }
-</style>
 
+</style>
+<script type="text/javascript">
+    function fun()
+    {
+        document.getElementById("msg").innerHTML="";
+    }
+</script>
 <div class="container mt-5 col-6">
 	<form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
+        {% if messages%}
+        {% for message in messages%}
+        <div class="alert alert-primary" role="alert">
+            <script>setTimeout(2000,myfun())</script>
+            <span id="msg">{{message}}</span>
+            {%endfor%}
+        </div>
+        {% endif %}
 		<h3 class="text text-center"> Receipt Page</h3>
 		<br>
 		<!-- <h4 style="font-family: 'Times New Roman', Times, serif;"> Create Receipt???? </h4> -->
 		<hr>
 		<div class="form-group">
 		<label for="exampleInputEmail1">Item Name </label>
-		<input type="text" name="name" class="form-control" required>
+		<input type="text" name="iteam" class="form-control" required>
 		</div>
 		<div class="form-group">
 		<label for="exampleInputEmail1">Price </label>
