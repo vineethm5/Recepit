@@ -23,13 +23,14 @@
         document.getElementById("msg").innerHTML="";
     }
 </script>
+<button class="btn btn-danger" > <a class="ok" href="/login">Logout </a></button>
 <div class="container mt-5 col-6">
 	<form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
         {% if messages%}
         {% for message in messages%}
         <div class="alert alert-primary" role="alert">
-            <script>setTimeout(2000,myfun())</script>
+            
             <span id="msg">{{message}}</span>
             {%endfor%}
         </div>
@@ -50,13 +51,13 @@
 		<label for="exampleInputPassword1">Quantity </label>
 		<input name="quantity" class="form-control" type="number" required>
 		</div>
-		<button type="submit" class="btn btn-success">Add Data ????</button>
+		<button type="submit" class="btn btn-success">Add Data</button>
 	</form>
 	<hr>
 	<div class="class mt-5">
 		<form action="">
 		<button class="btn btn-primary"> <a class="ok" href="">Generate Bill </a></button>
-		<button class="btn btn-danger"> <a class="ok" href="">Logout </a></button>
+		
 		</form>
 
 		<table class="table mt-6">
@@ -67,14 +68,14 @@
 					<th scope="col">Price </th>
 					<th scope="col">Quantity </th>
 					<th scope="col">Total </th>
-					<th scope="col">Actions ????</th>
+					<th scope="col">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for receipt in receipts %}
+				{% for receipt in query %}
 				<tr>
 					<th scope="row">{{forloop.counter}}</th>
-					<td>{{receipt.name}}</td>
+					<td>{{receipt.itemname}}</td>
 					<td> ₹{{receipt.price}}</td>
 					<td>{{receipt.quantity}}</td>
 					<td> ₹{{receipt.total}}</td>
@@ -85,6 +86,7 @@
 				</tr>
 				{% endfor %}
 				<tr>
+					
 					<th colspan="4" class="text-right">Total Sum :</th>
 					<td></td>
 				</tr>

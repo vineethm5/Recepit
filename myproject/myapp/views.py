@@ -55,6 +55,9 @@ def billpage(req):
             price=price,
             quantity=quantity
         )
+
+        queryset=receipt.objects.all()
         messages.info(req,"Item Added Succuessfully")
+        return render(req,"billpage.html",context={"query":queryset})
 
     return render(req,"billpage.html")
