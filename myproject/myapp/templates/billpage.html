@@ -23,7 +23,7 @@
         document.getElementById("msg").innerHTML="";
     }
 </script>
-<button class="btn btn-danger" > <a class="ok" href="/login">Logout </a></button>
+ <a class="" href="/login">Logout </a>
 <div class="container mt-5 col-6">
 	<form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
@@ -80,8 +80,8 @@
 					<td>{{receipt.quantity}}</td>
 					<td> ₹{{receipt.total}}</td>
 					<td>
-						<!-- <a href="/delete_receipt/{{receipt.id }}" class="btn btn-danger m-2">Delete </a> -->
-						<!-- <a href="/update_receipt/{{receipt.id }}" class="btn btn-success">Update </a> -->
+						<a href="/delete/{{receipt.id }}" class="btn btn-danger m-2">Delete </a>
+						<a href="/update/{{receipt.id }}" class="btn btn-success">Update </a>
 					</td>
 				</tr>
 				{% endfor %}

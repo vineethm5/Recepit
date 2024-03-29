@@ -45,6 +45,7 @@ def login(req):
     return render(req,"login.html")
 
 def billpage(req):
+    queryset=receipt.objects.all()
     if req.method == "POST":
         iteam=req.POST.get("iteam")
         price=req.POST.get("price")
@@ -55,9 +56,34 @@ def billpage(req):
             price=price,
             quantity=quantity
         )
-
         queryset=receipt.objects.all()
         messages.info(req,"Item Added Succuessfully")
         return render(req,"billpage.html",context={"query":queryset})
 
-    return render(req,"billpage.html")
+    return render(req,"billpage.html",context={"query":queryset})
+
+
+def delete(req,id):
+    print(id)
+    queryset=receipt.objects.all().get(id=id)
+    queryset.delete()
+    return redirect("/billpage")
+
+
+def update(req,id):
+    queryset=receipt.objects.get(id=id)
+    context={"query":queryset}
+    if req.method =="POST":
+        
+        item=req.POST.get("iteam")
+        price=req.POST.get("price")
+        quantity=req.POST.get("quantity")
+
+        queryset.itemname=item
+        queryset.price=price
+        queryset.quantity=quantity
+        queryset.save()
+
+        return redirect("/billpage")
+
+    return render(req,"update.html",context)
